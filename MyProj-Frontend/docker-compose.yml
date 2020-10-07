@@ -1,0 +1,14 @@
+version: "3"
+services:
+  front:
+    image: node:slim
+    ports:
+      - 3000:3000
+    volumes:
+      - $PWD:/app
+    entrypoint:
+      - bash
+      - -c
+      - "cd /app && yarn start"
+    environment:
+      - CHOKIDAR_USEPOLLING=true

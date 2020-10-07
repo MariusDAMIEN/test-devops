@@ -1,0 +1,34 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123456
+      - MONGO_INITDB_DATABASE=dback
+    volumes:
+      - ./dbdata:/data/db
+
+  back:
+    image: node:slim
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - $PWD:/app
+    environment:
+      - MONGO_HOST=mongo
+      - REDIS_HOST=redis
+    entrypoint:
+      - bash
+      - -c
+      - "cd /app && yarn start"
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+volumes: 
+  dbdata:

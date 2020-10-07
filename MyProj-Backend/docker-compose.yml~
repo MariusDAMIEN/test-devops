@@ -1,0 +1,34 @@
+version: "3"
+services:
+  back:
+    image: node:slim
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - $PWD:/app
+    environment:
+      - MONGO_HOST=mongo
+      - REDIS_HOST=redis
+    entrypoint:
+      - bash
+      - -c
+      - "cd /app && yarn start"
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+    volumes:
+      - dbdata:/data/db
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+volumes: 
+  dbdata:

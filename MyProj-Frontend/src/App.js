@@ -17,6 +17,7 @@ function App() {
         })
     }, 1000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (!data) return <h1>Loading...</h1>;
@@ -25,7 +26,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h3>My app !</h3>
+        <h3>My app  et oui !</h3>
         {data.error ? (
           <div className="App-error">{`Error! ${data.error}`}</div>
         ) : (
