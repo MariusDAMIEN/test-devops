@@ -23,5 +23,7 @@ test:
     stage: test
     image: mariusdamien/devops-un:first
 
+    before-script:
+        - cd MyProj-Frontend
     script:
         - npm test
