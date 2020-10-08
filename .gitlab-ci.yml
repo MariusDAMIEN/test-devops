@@ -24,6 +24,7 @@ test:
     image: mariusdamien/devops-un:first
 
     before_script:
+        - npm install
         - cd MyProj-Frontend
     script:
         - npm test
