@@ -21,7 +21,7 @@ build:
 
 test:
     stage: test
-    image: mariusdamien/devops-un
+    image: mariusdamien/devops-un:first
 
     script:
         - npm test
