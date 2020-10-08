@@ -8,6 +8,7 @@ build:
 
     services:
         - docker:dind
+        - node:slim
 
     before_script:
         - docker info
