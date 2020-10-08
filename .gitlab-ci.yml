@@ -11,9 +11,7 @@ test:
         - chmod +x /usr/local/bin/docker-compose
     script:
         - cd MyProj-Backend
-        - npm install
         - docker-compose up -d
         - cd ../MyProj-Frontend
-        - npm install
         - docker-compose up -d
         - cypress run
