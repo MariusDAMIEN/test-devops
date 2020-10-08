@@ -28,3 +28,4 @@ test:
         - npm install
     script:
         - npm test
+        - yarn run cypress open
