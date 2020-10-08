@@ -1,6 +1,6 @@
 test:
     stage: test
-    image: docker/docker-compose:latest
+    image: tmaier/docker-compose:latest
 
     services:
         - docker:dind
