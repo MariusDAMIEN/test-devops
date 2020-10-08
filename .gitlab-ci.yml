@@ -1,10 +1,15 @@
-test:
-    stage: test
+stages:
+    - build
+    - build-test
+    - test
+
+
+build:
+    stage: build
     image: tmaier/docker-compose:latest
 
     services:
         - docker:dind
-        - cypress/base:10
 
     before_script:
         - docker info
@@ -15,4 +20,11 @@ test:
         - docker-compose up -d
         - cd ../MyProj-Frontend
         - docker-compose up -d
+
+build-test:
+    stage: build-test
+    image: cypress/base:10
+
+    script:
+        - cd MyProj-Frontend
         - cypress run
