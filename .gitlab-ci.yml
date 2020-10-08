@@ -1,7 +1,5 @@
 stages:
     - build
-    - build-test
-    - test
 
 
 build:
@@ -20,11 +18,4 @@ build:
         - docker-compose up -d
         - cd ../MyProj-Frontend
         - docker-compose up -d
-
-build-test:
-    stage: build-test
-    image: cypress/base:10
-
-    script:
-        - cd MyProj-Frontend
-        - cypress run
+        - npm cypress
