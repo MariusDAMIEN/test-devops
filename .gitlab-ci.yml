@@ -4,6 +4,7 @@ test:
 
     services:
         - docker:dind
+        - cypress/base
 
     before_script:
         - docker info
