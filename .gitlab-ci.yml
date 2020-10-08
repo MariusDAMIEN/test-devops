@@ -1,7 +1,6 @@
 stages:
     - build
 
-
 build:
     stage: build
     image: node:slim
@@ -20,4 +19,3 @@ build:
         - docker-compose up -d
         - cd ../MyProj-Frontend
         - docker-compose up -d
-        - 
