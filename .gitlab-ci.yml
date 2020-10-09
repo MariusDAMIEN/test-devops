@@ -32,7 +32,7 @@ test:
         paths:
             - MyProj-Frontend/node_modules/
             - MyProj-Frontend/.npm
-            - root/.cache/Cypress
+            - MyProj-Frontend/cache/Cypress
 
     before_script:
         - cd MyProj-Frontend
