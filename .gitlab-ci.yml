@@ -22,7 +22,10 @@ build:
 test:
     stage: test
     image: mariusdamien/devops-un:first
-
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}
+        paths:
+            - .npm/
     before_script:
         - cd MyProj-Frontend
         - npm install
