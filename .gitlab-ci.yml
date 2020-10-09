@@ -30,6 +30,6 @@ test:
         - cd MyProj-Frontend
         - npm install
     script:
-        - yarn start
-        - npm build
+        - yarn test
+        - yarn build
         - yarn run cypress open
