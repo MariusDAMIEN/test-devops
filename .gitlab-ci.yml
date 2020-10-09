@@ -1,20 +1,38 @@
-test:
-    stage: test
-    image: docker
-    variables:
+stages:
+    - build
+    - test
+
+build:
+    stage: build
+    image: tmaier/docker-compose
+
     services:
         - docker:dind
 
     before_script:
-        - apk add --no-cache python python-dev py-pip libffi-dev openssl-dev gcc libc-dev make
-        - pip install docker-compose
-        - apk add --no-cache --update nodejs npm
-        - npm install
+        - docker info
+        - docker-compose --version
+
     script:
         - cd MyProj-Backend
-        - npm install
         - docker-compose up -d
         - cd ../MyProj-Frontend
-        - npm install
         - docker-compose up -d
-        - cypress run
+
+test:
+    stage: test
+    image: mariusdamien/devops-un:first
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}
+        paths:
+            - .npm/
+    before_script:
+        - cd MyProj-Frontend
+        - npm install
+    script:
+        - yarn global add serve
+        - npm install -g wait-on
+        - yarn test
+        - yarn build
+        - (serve -s build -l 3000)& wait-on http://localhost:3000
+        - yarn run cypress open
