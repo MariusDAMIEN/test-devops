@@ -26,6 +26,7 @@ test:
         key: ${CI_COMMIT_REF_SLUG}
         paths:
             - MyProj-Frontend/node_modules/
+            - /root/.cache/Cypress
     before_script:
         - cd MyProj-Frontend
         - npm install
