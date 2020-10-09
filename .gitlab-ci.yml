@@ -25,7 +25,7 @@ test:
     cache:
         key: ${CI_COMMIT_REF_SLUG}
         paths:
-            - node_modules/
+            - MyProj-Frontend/node_modules/
     before_script:
         - cd MyProj-Frontend
         - npm install
