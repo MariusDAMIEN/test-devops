@@ -16,3 +16,13 @@ services:
       - "cd /app && npm start && yarn start"
     environment:
       - CHOKIDAR_USEPOLLING=true
+
+  watchtower:
+    command: --label-enable --cleanup --interval 300
+    image: containrrr/watchtower
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    network_mode: none
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
