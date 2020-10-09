@@ -2,6 +2,10 @@ version: "3"
 services:
   front:
     image: node:slim
+    depends_on:
+      - watchtower
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - 3000:3000
     volumes:
@@ -9,6 +13,6 @@ services:
     entrypoint:
       - bash
       - -c
-      - "cd /app && yarn start"
+      - "cd /app && npm start && yarn start"
     environment:
       - CHOKIDAR_USEPOLLING=true

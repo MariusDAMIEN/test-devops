@@ -2,17 +2,25 @@ version: "3"
 services:
   mongo:
     image: mongo:latest
+    depends_on:
+      - watchtower
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - 27017:27017
     environment:
       - MONGO_INITDB_ROOT_USERNAME=MONGO_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD=MONGO_PASSWORD
-      - MONGO_INITDB_DATABASE=MONGO_DATABASE
+      - MONGO_INITDB_DATABASE=MONGO_DATABASE  
     volumes:
       - ./dbdata:/data/db
 
   back:
     image: node:slim
+    depends_on:
+      - watchtower
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
@@ -23,12 +31,26 @@ services:
     entrypoint:
       - bash
       - -c
-      - "cd /app && yarn start"
+      - "cd /app && npm install && yarn start"
 
   redis:
     image: redis
+    depends_on:
+      - watchtower
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - 6379:6379
+
+  watchtower:
+    command: --label-enable --cleanup --interval 300
+    image: containrrr/watchtower
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    network_mode: none
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes: 
   dbdata:

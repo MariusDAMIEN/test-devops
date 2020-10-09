@@ -1,7 +1,9 @@
-FROM node:14.11-alpine
+FROM cypress/base:latest
+
+WORKDIR /app
 
 COPY . /app
 
 RUN npm install
 
-CMD npm start
+CMD npm start && yarn start
