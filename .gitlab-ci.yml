@@ -30,10 +30,11 @@ test:
     before_script:
         - cd MyProj-Frontend
         - npm install
-    script:
         - yarn global add serve
         - npm install -g wait-on
         - yarn test
+
+    script:
         - yarn build
         - (serve -s build -l 3000)& wait-on http://localhost:3000
         - yarn run cypress open
