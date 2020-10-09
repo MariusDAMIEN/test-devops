@@ -3,8 +3,8 @@ stages:
     - test
 
 variables:
-  npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  npm_config_cache: "$CI_PROJECT_DIR/MyProj-Frontend/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/MyProj-Frontend/cache/Cypress"
 
 
 build:
@@ -35,9 +35,6 @@ test:
             - MyProj-Frontend/cache/Cypress
 
     before_script:
-        - 'export CYPRESS_CACHE_FOLDER=../../../cache/Cypress'
-        - 'yarn ci'
-        - 'export CYPRESS_CACHE_FOLDER=MyProj-Frontend/cache/Cypress'
         - cd MyProj-Frontend
         - npm install
         - yarn global add serve
