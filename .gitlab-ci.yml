@@ -31,5 +31,5 @@ test:
         - npm install
     script:
         - yarn start
-        - npm test
+        - npm build
         - yarn run cypress open
