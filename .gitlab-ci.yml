@@ -34,5 +34,5 @@ test:
         - npm install -g wait-on
         - yarn test
         - yarn build
-        - (serve -s build)& wait-on http://localhost:3000
+        - (serve -s build -l 3000)& wait-on http://localhost:3000
         - yarn run cypress open
