@@ -39,6 +39,7 @@ test:
         - npm install
         - yarn global add serve
         - npm install -g wait-on
+        - npm install -g cypress
         - yarn test
 
     script:
