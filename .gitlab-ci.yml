@@ -35,11 +35,13 @@ test:
             - MyProj-Frontend/cache/Cypress
 
     before_script:
+        - 'export CYPRESS_CACHE_FOLDER=../../../cache/Cypress'
+        - 'yarn ci'
+        - 'export CYPRESS_CACHE_FOLDER=MyProj-Frontend/cache/Cypress'
         - cd MyProj-Frontend
         - npm install
         - yarn global add serve
         - npm install -g wait-on
-        - npm install -g cypress
         - yarn test
 
     script:
