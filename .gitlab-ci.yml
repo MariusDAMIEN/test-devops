@@ -14,6 +14,7 @@ build:
     services:
         - docker:dind
 
+
     before_script:
         - docker info
         - docker-compose --version
@@ -38,6 +39,7 @@ test:
         - cd MyProj-Frontend
         - npm install
         - yarn global add serve
+        - yarn global add cypress
         - npm install -g wait-on
         - yarn test
 
