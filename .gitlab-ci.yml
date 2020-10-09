@@ -31,6 +31,7 @@ test:
         - npm install
     script:
         - yarn global add serve
+        - npm install -g wait-on
         - yarn test
         - yarn build
         - (serve -s build)& wait-on http://localhost:8080
