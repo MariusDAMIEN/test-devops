@@ -33,5 +33,5 @@ test:
         - yarn global add serve
         - yarn test
         - yarn build
-        - serve -s build
+        - (serve -s build)&
         - yarn run cypress open
