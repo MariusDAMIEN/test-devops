@@ -33,5 +33,5 @@ test:
         - yarn global add serve
         - yarn test
         - yarn build
-        - (serve -s build)&
+        - (serve -s build)& wait-on http://localhost:8080
         - yarn run cypress open
