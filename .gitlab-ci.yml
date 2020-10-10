@@ -2,12 +2,18 @@ stages:
     - build
     - test
 
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/MyProj-Frontend/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/MyProj-Frontend/cache/Cypress"
+
+
 build:
     stage: build
     image: tmaier/docker-compose
 
     services:
         - docker:dind
+
 
     before_script:
         - docker info
@@ -25,14 +31,19 @@ test:
     cache:
         key: ${CI_COMMIT_REF_SLUG}
         paths:
-            - .npm/
+            - MyProj-Frontend/node_modules/
+            - MyProj-Frontend/.npm
+            - MyProj-Frontend/cache/Cypress
+
     before_script:
         - cd MyProj-Frontend
         - npm install
-    script:
         - yarn global add serve
+        - yarn global add cypress
         - npm install -g wait-on
         - yarn test
+
+    script:
         - yarn build
         - (serve -s build -l 3000)& wait-on http://localhost:3000
         - yarn run cypress open
