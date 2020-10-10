@@ -1,6 +1,6 @@
 FROM node:14.11-alpine
 
-WORKDIR ./app
+WORKDIR /app
 
 VOLUME . ./app/
 
